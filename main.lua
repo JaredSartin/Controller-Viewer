@@ -16,6 +16,7 @@ settings.windowposition = settings.windowposition or {
 
 local size = controller.getsize()
 
+-- App Setup
 gui.app:setname('Controller Overlay')
 local appicon = gui.Image.createfrompath('./assets/app icon.png')
 local win = gui.Window.create({ frame = false, transparent = true })
@@ -29,6 +30,20 @@ win:setminimizable(false)
 win.shouldclose = function() return false end
 win.onclose = function() gui.MessageLoop.quit() end
 
+-- Settings Helpers
+local setrenderscale = function(scale)
+  settings.render.scale = scale
+  win:setcontentsize({ width = size.width * settings.render.scale, height = size.height * settings.render.scale })
+  LIP.save('settings.ini', settings)
+end
+
+local setalwaysontop = function(ontop)
+  settings.render.ontop = ontop
+  win:setalwaysontop(ontop)
+  LIP.save('settings.ini', settings)
+end
+
+-- Tray Options
 local quitoption = gui.MenuItem.create({
   type = 'label',
   label = 'Quit',
@@ -47,18 +62,6 @@ local overlayoption = gui.MenuItem.create({
     win:setvisible(self:ischecked())
   end
 })
-
-local setrenderscale = function(scale)
-  settings.render.scale = scale
-  win:setcontentsize({ width = size.width * settings.render.scale, height = size.height * settings.render.scale })
-  LIP.save('settings.ini', settings)
-end
-
-local setalwaysontop = function(ontop)
-  settings.render.ontop = ontop
-  win:setalwaysontop(ontop)
-  LIP.save('settings.ini', settings)
-end
 
 local scalemenu = {
   {
@@ -115,7 +118,7 @@ local menuitems = {
   quitoption
 }
 local traymenu = gui.Menu.create(menuitems)
-gui.globalshortcut:register('Alt+Shift+1', function() p1overlayoption:click() end)
+gui.globalshortcut:register(settings.shortcut.toggleview, function() overlayoption:click() end)
 
 local tray = gui.Tray.createwithimage(appicon)
 tray:setmenu(traymenu)
