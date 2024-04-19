@@ -27,7 +27,7 @@ Currently, the overlay supports a single theme. All files are in the `assets` di
 YMMV with changing asset sizes - larger assets may incur a RAM penalty (albieit, not much), and different sizes may expose any bugs where there may be hardcode values or calculations based on the original 512x512 controller layout. The system currently support PNGs with alpha transparency for the file type.
 
 ## Development
-The core scripts are all in [Lua 5.1.5](https://www.lua.org/manual/5.1/), using [Yue 0.15.3 Lua Scripting](https://libyue.com/docs/latest/lua/), and xinput from (ThomasR95/BHDS_Controller)[https://github.com/ThomasR95/BHDS_Controller]. You are welcome to modify and change the scripts, menu oiptions, and usage. I would appreciate pull requests of improvements or features!
+The core scripts are all in [Lua 5.1.5](https://www.lua.org/manual/5.1/), using [Yue 0.15.3 Lua Scripting](https://libyue.com/docs/latest/lua/), and xinput from https://github.com/ThomasR95/BHDS_Controller/. You are welcome to modify and change the scripts, menu oiptions, and usage. I would appreciate pull requests of improvements or features!
 
 ## Roadmap
 In no specific order, these are features I would love to support
